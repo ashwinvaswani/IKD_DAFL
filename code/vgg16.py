@@ -77,12 +77,5 @@ def _vgg(arch, cfg,params, batch_norm, pretrained, progress, **kwargs):
 def vgg16(features,params,pretrained=False,progress=True, **kwargs):
     return _vgg('vgg16', features, params, False, pretrained, progress, **kwargs)
 
-def get_output_nodes(params):
-    for i in reversed(params):
-        if type(i) == int:
-            last_number = i
-            break
-
-    return last_number
 
 

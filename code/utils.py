@@ -7,6 +7,8 @@ from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
 import torch
+import resnet
+import vgg16
 
 def kdloss(y, teacher_scores):
     p = F.log_softmax(y, dim=1)
@@ -74,5 +76,33 @@ def train_model(net, teacher, generator, data_test_loader, device, criterion, op
             accr_best = accr
             print("Saving model with accuracy: {}".format(accr_best))
             cnt = cnt+1
-            torch.save(net.state_dict(),'student_'+str(cnt)+'_'+str(dataset)+'.pt')
+            torch.save(net.state_dict(),'./student_models/student_'+str(cnt)+'_'+str(dataset)+'.pt')
     return accr_best, cnt    
+
+def get_model(model_name,parameters):
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    if model_name == 'resnet18':
+        net = resnet.ResNet18(parameters,num_classes=10).to(device)
+    elif model_name == 'resnet34':
+        net = resnet.ResNet34(parameters,num_classes=10).to(device)
+    elif model_name == 'resnet50':
+        net = resnet.ResNet50(parameters,num_classes=10).to(device)
+    elif model_name == 'resnet101':
+        net = resnet.ResNet101(parameters,num_classes=10).to(device)
+    elif model_name == 'resnet152':
+        net = resnet.ResNet152(parameters,num_classes=10).to(device)
+    elif model_name == 'vgg16':
+        net = 0
+    else:
+        print("Entered student model is not compatibale currently!\n")
+        net = -1
+
+    return net
+
+def get_output_nodes(params):
+    for i in reversed(params):
+        if type(i) == int:
+            last_number = i
+            break
+
+    return last_number
