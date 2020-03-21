@@ -146,12 +146,12 @@ for depth in range(args.depth):
         #If model is resnet
         else:
             net = output_model
-    # print(net)
-    optimizer_S = torch.optim.SGD(net.parameters(), lr=args.lr_S, momentum=0.9, weight_decay=5e-4)
-    accr_best, cnt = utils.train_model(net, teacher, generator, data_test_loader, device, criterion, optimizer_G, optimizer_S, args.lr_G, args.lr_S, args.oh, args.ie, args.a, args.batch_size, args.img_size, args.latent_dim, args.n_epochs, args.dataset, cnt)
-    print()
-    print("Best accuracy currently : {}".format(accr_best))
-    print("\n############################################################################\n")
+        # print(net)
+        optimizer_S = torch.optim.SGD(net.parameters(), lr=args.lr_S, momentum=0.9, weight_decay=5e-4)
+        accr_best, cnt = utils.train_model(net, teacher, generator, data_test_loader, device, criterion, optimizer_G, optimizer_S, args.lr_G, args.lr_S, args.oh, args.ie, args.a, args.batch_size, args.img_size, args.latent_dim, args.n_epochs, args.dataset, cnt)
+        print()
+        print("Best accuracy currently : {}".format(accr_best))
+        print("\n############################################################################\n")
 '''
     # For odd case :
     elif depth % 2 == 1:
