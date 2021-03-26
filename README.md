@@ -1,6 +1,6 @@
 ## Iterative Knowledge Distillation for Data-Free Learning of Student Networks
 
-This repository is teh code for a project as part of a joint collaboration between BITS Pilani and TCS-Datalabs. 
+This repository contains code for a project as part of a joint collaboration between BITS Pilani and TCS-Datalabs. 
 
 ## Collaborators: 
 1. Ashwin Vaswani ( BITS Pilani, Goa ) 
